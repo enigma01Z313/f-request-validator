@@ -2,9 +2,10 @@ const validatorF = require("./validatorFunction");
 
 const validator = (validations) => {
   return (req, res, next) => {
-    const validateRes = validatorF(item, validations);
+    const validateRes = validatorF(req.body, validations);
+
     if (validateRes === false) return next();
-    else return validateRes;
+    else return next(validateRes);
   };
 };
 

@@ -7,6 +7,8 @@ const validateErrors = (i, v, t, parameterName, parameterNameFa) => {
     (typeof t === "undefined" || t === "")
   )
     return fError(400, v.violations[0], v.violations[1]);
+  else if (i === "atleastOne" && v && !v.value.some((item) => item in fullBody))
+    return fError(400, v.violations[0], v.violations[1]);
   else if (i === "regex" && t && v.value !== "" && !v.value.test(t))
     return fError(400, v.violations[0], v.violations[1]);
   else if (i === "length" && t && t?.length !== v.value)

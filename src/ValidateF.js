@@ -65,6 +65,26 @@ const setType = (item, type, faType) => ({
       };
       return this;
     }
+
+    //or required
+    requiredAtLeast(paramList) {
+      const generalValidations = {
+        parameter: "GENERAL",
+        faName: "عمومی",
+        validations: {
+          atleastOne: {
+            value: paramList,
+            violations: [
+              `at least on of'${paramList.join(", ")}' must be sent`,
+              `حداقل یکی پارامترهای '${paramList.join(", ")}' باید ارسال شود`,
+            ],
+          },
+        },
+      };
+      this.items[this.items.length] = generalValidations;
+      
+      return this;
+    }
   
     //others
     regex(pattern) {
